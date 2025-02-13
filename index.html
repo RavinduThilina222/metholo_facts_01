@@ -5,44 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meteorology Facts</title>
     <style>
+        :root {
+            --background-color-light: #e3f2fd; /* Light blue background */
+            --background-color-dark: #001f3f; /* Dark blue background */
+            --text-color-light: #0d47a1; /* Dark blue text */
+            --text-color-dark: #ffffff; /* White text */
+            --container-background-light: #ffffff; /* White container */
+            --container-background-dark: #003366; /* Darker blue container */
+            --border-color-light: #0d47a1; /* Dark blue border */
+            --border-color-dark: #007bff; /* Light blue border */
+            --button-background-light: #0d47a1; /* Dark blue button */
+            --button-background-dark: #007bff; /* Light blue button */
+            --button-hover-light: #1976d2; /* Lighter blue on hover */
+            --button-hover-dark: #0056b3; /* Darker blue on hover */
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #001f3f; /* Dark blue background */
-            color: #ffffff; /* White text */
+            background-color: var(--background-color-light);
+            color: var(--text-color-light);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            transition: background-color 0.5s, color 0.5s;
         }
 
         .container {
             text-align: center;
-            border: 2px solid #007bff; /* Light blue border */
+            border: 2px solid var(--border-color-light);
             border-radius: 10px;
             padding: 20px;
-            background-color: #003366; /* Darker blue for the container */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background-color: var(--container-background-light);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.5s, border-color 0.5s;
         }
 
         button {
-            background-color: #007bff; /* Light blue button */
+            background-color: var(--button-background-light);
             color: white;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: var(--button-hover-light);
+            transform: scale(1.05);
         }
 
         #factDisplay {
             margin: 20px 0;
             opacity: 0;
             transition: opacity 0.5s;
+        }
+
+        .dark-mode {
+            background-color: var(--background-color-dark);
+            color: var(--text-color-dark);
+        }
+
+        .dark-mode .container {
+            background-color: var(--container-background-dark);
+            border-color: var(--border-color-dark);
+        }
+
+        .dark-mode button {
+            background-color: var(--button-background-dark);
+        }
+
+        .dark-mode button:hover {
+            background-color: var(--button-hover-dark);
         }
     </style>
 </head>
@@ -51,6 +87,7 @@
         <h1>Meteorology Facts</h1>
         <p id="factDisplay">Click the button to see a random fact!</p>
         <button id="randomFactButton">Show Random Fact</button>
+        <button id="toggleModeButton">Toggle Dark/Light Mode</button>
     </div>
     <script>
         const facts = [
@@ -106,6 +143,10 @@
                 factDisplay.innerHTML = `<strong>${selectedFact.fact}</strong><br>${selectedFact.description}`;
                 factDisplay.style.opacity = 1; // Fade in
             }, 500);
+        });
+
+        document.getElementById('toggleModeButton').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
         });
     </script>
 </body>
