@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meteorology Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            color: #00796b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid #00796b;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        #factDisplay {
+            margin: 20px 0;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meteorology Facts</h1>
+        <p id="factDisplay">Click the button to see a random fact!</p>
+        <button id="randomFactButton">Show Random Fact</button>
+    </div>
+    <script>
+        const facts = [
+            {
+                fact: "Meteorology is the scientific study of the atmosphere and its phenomena.",
+                description: "It involves understanding weather patterns, climate, and atmospheric conditions."
+            },
+            {
+                fact: "The word 'meteorology' comes from the Greek word 'meteoron'.",
+                description: "It originally referred to anything that fell from the sky, including rain and snow."
+            },
+            {
+                fact: "Meteorologists use various tools to predict weather.",
+                description: "Common tools include satellites, radar, weather balloons, and computer models."
+            },
+            {
+                fact: "The atmosphere is divided into layers.",
+                description: "These layers include the troposphere, stratosphere, mesosphere, thermosphere, and exosphere."
+            },
+            {
+                fact: "Weather and climate are not the same.",
+                description: "Weather refers to short-term atmospheric conditions, while climate refers to long-term averages."
+            },
+            {
+                fact: "The Coriolis effect influences wind patterns.",
+                description: "It causes moving air and water to turn and twist due to the Earth's rotation."
+            },
+            {
+                fact: "Severe weather events can be predicted.",
+                description: "Meteorologists can forecast events like hurricanes, tornadoes, and blizzards with varying degrees of accuracy."
+            },
+            {
+                fact: "Climate change is a significant focus in meteorology.",
+                description: "Meteorologists study how human activities impact weather patterns and global temperatures."
+            },
+            {
+                fact: "The first weather satellite was launched in 1960.",
+                description: "TIROS-1 provided meteorologists with real-time data on cloud cover and weather systems."
+            },
+            {
+                fact: "Meteorology plays a crucial role in agriculture.",
+                description: "Farmers rely on weather forecasts to make decisions about planting and harvesting crops."
+            }
+        ];
+
+        document.getElementById('randomFactButton').addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const selectedFact = facts[randomIndex];
+            const factDisplay = document.getElementById('factDisplay');
+            
+            factDisplay.style.opacity = 0; // Fade out
+            setTimeout(() => {
+                factDisplay.innerHTML = `<strong>${selectedFact.fact}</strong><br>${selectedFact.description}`;
+                factDisplay.style.opacity = 1; // Fade in
+            }, 500);
+        });
+    </script>
+</body>
+</html>
